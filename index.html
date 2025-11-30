@@ -636,6 +636,51 @@
             display: inline-block;
             box-shadow: 0 4px 15px rgba(245, 87, 108, 0.3);
         }
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+            transform: translateY(-2px);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: white;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
 
        @media (max-width: 768px) {
             .hero h1 {
@@ -696,14 +741,19 @@
     </style>
 </head>
 <body>
-    <header class="header">
-        <div class="nav-container">
-            <div class="logo">
-                <span class="logo-icon">📚</span> SchoolEdge
-            </div>
-            <a href="#contact" class="cta-button">Get Started Free</a>
+   <header class="header">
+    <div class="nav-container">
+        <div class="logo">
+            <span class="logo-icon">📚</span> SchoolEdge
         </div>
-    </header>
+        <nav class="nav-links">
+            <a href="#features">Features</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#contact">Contact</a>
+        </nav>
+        <a href="#contact" class="cta-button">Get Started Free</a>
+    </div>
+</header>
 
     <section class="hero">
         <div class="hero-content">
@@ -824,7 +874,7 @@
                         <li>Unlimited admin & teacher accounts</li>
                         <li>Parent portal included</li>
                         <li>All core features</li>
-                        <li>Email support</li>
+                        <li>Email support (24-48hr response)</li>
                         <li>Daily backups</li>
                         <li>POPIA compliant</li>
                     </ul>
@@ -842,10 +892,10 @@
                         <li>Unlimited admin & teacher accounts</li>
                         <li>Parent portal included</li>
                         <li>All core features</li>
-                        <li>Priority email support</li>
+                        <li>Priority support (12-24hr response)</li>
                         <li>Daily backups</li>
                         <li>POPIA compliant</li>
-                        <li>On-site training available</li>
+                        <li>Online training resources</li>
                     </ul>
                     <a href="#contact" class="price-button">Get Started</a>
                 </div>
@@ -860,10 +910,10 @@
                         <li>Unlimited admin & teacher accounts</li>
                         <li>Parent portal included</li>
                         <li>All core features</li>
-                        <li>Priority support (4hr response)</li>
+                        <li>Priority support (8-12hr response)</li>
                         <li>Daily backups</li>
                         <li>POPIA compliant</li>
-                        <li>Free on-site training</li>
+                        <li>Video training sessions included</li>
                         <li>Dedicated account manager</li>
                     </ul>
                     <a href="#contact" class="price-button">Get Started</a>
@@ -879,10 +929,10 @@
                         <li>Unlimited admin & teacher accounts</li>
                         <li>Parent portal included</li>
                         <li>All core features</li>
-                        <li>24/7 priority support</li>
+                        <li>Premium support (4-6hr response)</li>
                         <li>Hourly backups</li>
                         <li>POPIA compliant</li>
-                        <li>Free on-site training (unlimited)</li>
+                        <li>Personalized training sessions</li>
                         <li>Dedicated account manager</li>
                         <li>Custom integrations available</li>
                     </ul>
@@ -891,12 +941,12 @@
             </div>
 
             <p style="text-align: center; margin-top: 4rem; font-size: 1.3rem; color: #1a202c; font-weight: 600;">
-                💡 <strong>Save 20%</strong> with annual billing | All plans include 3-month FREE trial
+                💡 <strong>Save 15%</strong> with annual billing | All plans include 3-month FREE trial
             </p>
         </div>
     </section>
 
-    <!-- NEW PER-STUDENT PRICING SECTION -->
+    <!-- PER-STUDENT PRICING SECTION (Updated with 15% discount) -->
     <section class="section per-student-pricing" style="background: white;">
         <div class="container">
             <h2 class="section-title">Per-Student Pricing Breakdown</h2>
@@ -919,10 +969,10 @@
                     </div>
 
                     <div style="border-top: 2px solid #e2e8f0; margin: 1.5rem 0; padding-top: 1.5rem;">
-                        <div style="font-size: 0.9rem; color: #718096; margin-bottom: 0.5rem;">Annual (Save 20%)</div>
+                        <div style="font-size: 0.9rem; color: #718096; margin-bottom: 0.5rem;">Annual (Save 15%)</div>
                         <div>
                             <span style="font-size: 1.2rem; font-weight: 700; color: #1a202c;">R</span>
-                            <span style="font-size: 3rem; font-weight: 900; background: linear-gradient(135deg, #48bb78 0%, #38a169 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1;">186.53</span>
+                            <span style="font-size: 3rem; font-weight: 900; background: linear-gradient(135deg, #48bb78 0%, #38a169 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1;">198.11</span>
                         </div>
                         <span style="font-size: 1rem; color: #718096; font-weight: 600;">per student/year</span>
                     </div>
@@ -951,10 +1001,10 @@
                     </div>
 
                     <div style="border-top: 2px solid #e2e8f0; margin: 1.5rem 0; padding-top: 1.5rem;">
-                        <div style="font-size: 0.9rem; color: #718096; margin-bottom: 0.5rem;">Annual (Save 20%)</div>
+                        <div style="font-size: 0.9rem; color: #718096; margin-bottom: 0.5rem;">Annual (Save 15%)</div>
                         <div>
                             <span style="font-size: 1.2rem; font-weight: 700; color: #1a202c;">R</span>
-                            <span style="font-size: 3rem; font-weight: 900; background: linear-gradient(135deg, #48bb78 0%, #38a169 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1;">143.71</span>
+                            <span style="font-size: 3rem; font-weight: 900; background: linear-gradient(135deg, #48bb78 0%, #38a169 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1;">152.73</span>
                         </div>
                         <span style="font-size: 1rem; color: #718096; font-weight: 600;">per student/year</span>
                         <div style="font-size: 0.85rem; color: #718096; margin-top: 0.3rem;">(at 250 students)</div>
@@ -982,10 +1032,10 @@
                     </div>
 
                     <div style="border-top: 2px solid #e2e8f0; margin: 1.5rem 0; padding-top: 1.5rem;">
-                        <div style="font-size: 0.9rem; color: #718096; margin-bottom: 0.5rem;">Annual (Save 20%)</div>
+                        <div style="font-size: 0.9rem; color: #718096; margin-bottom: 0.5rem;">Annual (Save 15%)</div>
                         <div>
                             <span style="font-size: 1.2rem; font-weight: 700; color: #1a202c;">R</span>
-                            <span style="font-size: 3rem; font-weight: 900; background: linear-gradient(135deg, #48bb78 0%, #38a169 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1;">115.06</span>
+                            <span style="font-size: 3rem; font-weight: 900; background: linear-gradient(135deg, #48bb78 0%, #38a169 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1;">122.29</span>
                         </div>
                         <span style="font-size: 1rem; color: #718096; font-weight: 600;">per student/year</span>
                         <div style="font-size: 0.85rem; color: #718096; margin-top: 0.3rem;">(at 500 students)</div>
@@ -1013,10 +1063,10 @@
                     </div>
 
                     <div style="border-top: 2px solid #e2e8f0; margin: 1.5rem 0; padding-top: 1.5rem;">
-                        <div style="font-size: 0.9rem; color: #718096; margin-bottom: 0.5rem;">Annual (Save 20%)</div>
+                        <div style="font-size: 0.9rem; color: #718096; margin-bottom: 0.5rem;">Annual (Save 15%)</div>
                         <div>
                             <span style="font-size: 1.2rem; font-weight: 700; color: #1a202c;">R</span>
-                            <span style="font-size: 3rem; font-weight: 900; background: linear-gradient(135deg, #48bb78 0%, #38a169 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1;">93.53</span>
+                            <span style="font-size: 3rem; font-weight: 900; background: linear-gradient(135deg, #48bb78 0%, #38a169 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1;">99.37</span>
                         </div>
                         <span style="font-size: 1rem; color: #718096; font-weight: 600;">per student/year</span>
                         <div style="font-size: 0.85rem; color: #718096; margin-top: 0.3rem;">(at 1,000 students)</div>
