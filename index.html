@@ -5,820 +5,1280 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SchoolEdge - Premium School Management System for South Africa</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+       @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            line-height: 1.6;
-            color: #1a202c;
-            overflow-x: hidden;
-        }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        /* Animated gradient background */
-        /* Clean static gradient background */
-       .header {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    padding: 1.2rem 0;
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.6;
+    color: #1a202c;
+    overflow-x: hidden;
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #e2e8f0 100%);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* === PREMIUM SCROLLBAR === */
+::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: linear-gradient(180deg, #f1f5f9, #e2e8f0);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #6366f1, #8b5cf6);
+    border-radius: 10px;
+    border: 2px solid #f1f5f9;
+    transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #4f46e5, #7c3aed);
+    box-shadow: 0 0 15px rgba(99, 102, 241, 0.6);
+}
+
+::selection {
+    background: linear-gradient(135deg, #dbeafe, #c7d2fe);
+    color: #1e40af;
+}
+
+/* === HEADER === */
+.header {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    color: #1a202c;
+    padding: 1rem 0;
     position: fixed;
     width: 100%;
     top: 0;
     z-index: 1000;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 4px 30px rgba(0,0,0,0.15);
-        }
+    box-shadow: 0 4px 30px rgba(99, 102, 241, 0.08);
+    border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+    transition: all 0.3s ease;
+}
 
-        .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+.header.scrolled {
+    padding: 0.75rem 0;
+    box-shadow: 0 8px 40px rgba(99, 102, 241, 0.12);
+}
 
-        .logo {
-            font-size: 2rem;
-            font-weight: 800;
-            display: flex;
-            align-items: center;
-            gap: 0.7rem;
-            letter-spacing: -0.5px;
-        }
+.nav-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+}
 
-        .logo-icon {
-            font-size: 2.5rem;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
-        }
+.logo {
+    font-size: 1.75rem;
+    font-weight: 900;
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    letter-spacing: -0.5px;
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    transition: all 0.3s ease;
+}
 
-        .cta-button {
-            background: white;
-            color: #667eea;
-            padding: 0.9rem 2.5rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 1rem;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 2px solid white;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        }
+.logo:hover {
+    transform: scale(1.05);
+}
 
-        .cta-button:hover {
-            background: transparent;
-            color: white;
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        }
+.logo-icon {
+    font-size: 2rem;
+    filter: drop-shadow(0 2px 4px rgba(99, 102, 241, 0.3));
+}
 
-        .hero {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+.nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+    align-items: center;
+}
+
+.nav-links a {
+    color: #475569;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    position: relative;
+    padding: 0.5rem 0;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #6366f1, #8b5cf6);
+    transition: width 0.3s ease;
+    border-radius: 2px;
+}
+
+.nav-links a:hover {
+    color: #6366f1;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+.cta-button {
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
     color: white;
-    padding: 10rem 2rem 8rem;
-    text-align: center;
-    margin-top: 80px;
+    padding: 0.875rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.95rem;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border: none;
+    box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
     position: relative;
     overflow: hidden;
 }
 
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M 100 0 L 0 0 0 100" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
-            opacity: 0.3;
-        }
+.cta-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.5s ease;
+}
 
-        .hero-content {
-            position: relative;
-            z-index: 1;
-        }
+.cta-button:hover::before {
+    left: 100%;
+}
 
-        .hero h1 {
-            font-size: 4.5rem;
-            margin-bottom: 1.5rem;
-            line-height: 1.1;
-            font-weight: 900;
-            letter-spacing: -2px;
-            text-shadow: 0 4px 20px rgba(0,0,0,0.2);
-        }
+.cta-button:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 12px 35px rgba(99, 102, 241, 0.5);
+}
 
-        .hero-highlight {
-            background: linear-gradient(120deg, #fff 0%, #f0f0ff 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
+/* === HERO === */
+.hero {
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #7c3aed 100%);
+    color: white;
+    padding: 10rem 2rem 8rem;
+    text-align: center;
+    margin-top: 70px;
+    position: relative;
+    overflow: hidden;
+}
 
-        .hero p {
-            font-size: 1.5rem;
-            margin-bottom: 3rem;
-            opacity: 0.95;
-            font-weight: 400;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.15);
-        }
+.hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 80%;
+    height: 150%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: float 20s ease-in-out infinite;
+}
 
-        .hero-buttons {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
+.hero::after {
+    content: '';
+    position: absolute;
+    bottom: -50%;
+    left: -20%;
+    width: 80%;
+    height: 150%;
+    background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: float 25s ease-in-out infinite reverse;
+}
 
-        .btn-primary {
-            background: white;
-            color: #667eea;
-            padding: 1.3rem 3rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 800;
-            font-size: 1.2rem;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 3px solid white;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
-        }
+@keyframes float {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    33% { transform: translate(30px, -30px) rotate(5deg); }
+    66% { transform: translate(-20px, 20px) rotate(-5deg); }
+}
 
-        .btn-primary:hover {
-            background: transparent;
-            color: white;
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
-        }
+.hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+}
 
-        .btn-secondary {
-            background: rgba(255,255,255,0.15);
-            backdrop-filter: blur(10px);
-            color: white;
-            padding: 1.3rem 3rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 1.2rem;
-            border: 2px solid rgba(255,255,255,0.5);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(10px);
+    padding: 0.875rem 2rem;
+    border-radius: 50px;
+    margin-bottom: 2.5rem;
+    border: 2px solid rgba(255,255,255,0.25);
+    font-weight: 700;
+    font-size: 1.05rem;
+    animation: fadeInDown 0.8s ease-out;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+}
 
-        .btn-secondary:hover {
-            background: white;
-            color: #667eea;
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
-        }
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
+.hero h1 {
+    font-size: 4.5rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.1;
+    font-weight: 900;
+    letter-spacing: -2px;
+    text-shadow: 0 4px 30px rgba(0,0,0,0.15);
+    animation: fadeInUp 0.8s ease-out 0.2s both;
+}
 
-        .section {
-            padding: 6rem 2rem;
-        }
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 
-        .section-title {
-            text-align: center;
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
-            color: #1a202c;
-            font-weight: 900;
-            letter-spacing: -1.5px;
-        }
+.hero-highlight {
+    background: linear-gradient(120deg, #fff 0%, #f0f0ff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: inline-block;
+}
 
-        .section-subtitle {
-            text-align: center;
-            font-size: 1.4rem;
-            color: #718096;
-            margin-bottom: 5rem;
-            font-weight: 400;
-        }
+.hero-description {
+    font-size: 1.4rem;
+    margin-bottom: 1.25rem;
+    opacity: 0.95;
+    font-weight: 500;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.7;
+    animation: fadeInUp 0.8s ease-out 0.4s both;
+}
 
-        .stats {
-            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
-            padding: 5rem 2rem;
-            text-align: center;
-            border-top: 4px solid #667eea;
-            border-bottom: 4px solid #667eea;
-        }
+.hero-subdescription {
+    font-size: 1.2rem;
+    margin-bottom: 3rem;
+    opacity: 0.9;
+    font-weight: 500;
+    max-width: 850px;
+    margin-left: auto;
+    margin-right: auto;
+    animation: fadeInUp 0.8s ease-out 0.6s both;
+}
 
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 4rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+.hero-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    max-width: 1000px;
+    margin: 0 auto 3rem;
+    animation: fadeInUp 0.8s ease-out 0.8s both;
+}
 
-        .stat-item {
-            padding: 2rem;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
-        }
+.stat-box {
+    background: rgba(255,255,255,0.12);
+    backdrop-filter: blur(10px);
+    padding: 1.75rem;
+    border-radius: 20px;
+    border: 2px solid rgba(255,255,255,0.2);
+    transition: all 0.4s ease;
+}
 
-        .stat-item:hover {
-            transform: translateY(-10px);
-        }
+.stat-box:hover {
+    transform: translateY(-8px) scale(1.05);
+    background: rgba(255,255,255,0.18);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+}
 
-        .stat-number {
-            font-size: 3rem;
-            font-weight: 900;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 0.5rem;
-        }
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: 900;
+    margin-bottom: 0.5rem;
+    line-height: 1;
+}
 
-        .stat-label {
-            font-size: 1.2rem;
-            color: #4a5568;
-            font-weight: 600;
-        }
+.stat-label {
+    font-size: 0.95rem;
+    font-weight: 600;
+    opacity: 0.95;
+}
 
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2.5rem;
-            margin-top: 4rem;
-        }
+.hero-buttons {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    animation: fadeInUp 0.8s ease-out 1s both;
+}
 
-        .feature-card {
-            background: white;
-            padding: 3rem;
-            border-radius: 24px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 2px solid transparent;
-        }
+.btn-primary {
+    background: white;
+    color: #6366f1;
+    padding: 1.25rem 3rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 1.15rem;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 3px solid white;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.25);
+    position: relative;
+    overflow: hidden;
+}
 
-        .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 60px rgba(102, 126, 234, 0.25);
-            border-color: #667eea;
-        }
+.btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease, height 0.6s ease;
+}
 
-        .feature-icon {
-            font-size: 4rem;
-            margin-bottom: 1.5rem;
-            filter: drop-shadow(0 4px 10px rgba(0,0,0,0.1));
-        }
+.btn-primary:hover::before {
+    width: 400px;
+    height: 400px;
+}
 
-        .feature-card h3 {
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-            color: #1a202c;
-            font-weight: 800;
-        }
+.btn-primary span {
+    position: relative;
+    z-index: 1;
+}
 
-        .feature-card p {
-            color: #718096;
-            line-height: 1.8;
-            font-size: 1.05rem;
-        }
+.btn-primary:hover {
+    color: white;
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+}
 
-        .pricing {
-            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
-        }
+.btn-secondary {
+    background: rgba(255,255,255,0.12);
+    backdrop-filter: blur(10px);
+    color: white;
+    padding: 1.25rem 3rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.15rem;
+    border: 2px solid rgba(255,255,255,0.4);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
 
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2.5rem;
-            margin-top: 4rem;
-            max-width: 1600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        @media (max-width: 1400px) {
-            .pricing-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
+.btn-secondary:hover {
+    background: white;
+    color: #6366f1;
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 20px 60px rgba(255,255,255,0.3);
+}
 
-        .price-card {
-            background: white;
-            padding: 3rem 2.5rem;
-            border-radius: 24px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
-            text-align: center;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 3px solid transparent;
-            position: relative;
-            overflow: hidden;
-        }
+.hero-footer-text {
+    margin-top: 2.5rem;
+    font-size: 1.05rem;
+    opacity: 0.9;
+    font-weight: 600;
+    animation: fadeInUp 0.8s ease-out 1.2s both;
+}
 
-        .price-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 6px;
-            background: linear-gradient(90deg, #667eea, #764ba2);
-            transform: scaleX(0);
-            transition: transform 0.4s ease;
-        }
+/* === STATS SECTION === */
+.stats {
+    background: white;
+    padding: 5rem 2rem;
+    text-align: center;
+    border-top: 1px solid #e2e8f0;
+    position: relative;
+    overflow: hidden;
+}
 
-        .price-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 25px 60px rgba(102, 126, 234, 0.25);
-            border-color: #667eea;
-        }
+.stats::before {
+    content: '';
+    position: absolute;
+    top: -100px;
+    right: -100px;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(99, 102, 241, 0.05) 0%, transparent 70%);
+    border-radius: 50%;
+}
 
-        .price-card:hover::before {
-            transform: scaleX(1);
-        }
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
 
-        .price-card.featured {
-            border: 3px solid #667eea;
-            transform: scale(1.05);
-            box-shadow: 0 20px 60px rgba(102, 126, 234, 0.3);
-        }
+.stat-item {
+    padding: 2.5rem 2rem;
+    background: linear-gradient(135deg, #ffffff 0%, #fafbff 100%);
+    border-radius: 24px;
+    box-shadow: 0 10px 40px rgba(99, 102, 241, 0.08);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 2px solid #f1f5f9;
+    position: relative;
+    overflow: hidden;
+}
 
-        .price-card.featured::before {
-            transform: scaleX(1);
-            height: 8px;
-        }
+.stat-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, #6366f1, #8b5cf6);
+    transform: scaleX(0);
+    transition: transform 0.4s ease;
+}
 
-        .popular-badge {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 0.5rem 1.5rem;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 0.9rem;
-            margin-bottom: 1.5rem;
-            display: inline-block;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
-        }
+.stat-item:hover::before {
+    transform: scaleX(1);
+}
 
-        .price-card h3 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            color: #1a202c;
-            font-weight: 800;
-        }
+.stat-item:hover {
+    transform: translateY(-12px) scale(1.02);
+    box-shadow: 0 20px 60px rgba(99, 102, 241, 0.15);
+    border-color: #c7d2fe;
+}
 
-        .price {
-            font-size: 3rem;
-            font-weight: 900;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 0.5rem;
-            line-height: 1;
-        }
+.stat-item-number {
+    font-size: 3.5rem;
+    font-weight: 900;
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0.75rem;
+    line-height: 1;
+}
 
-        .price-period {
-            color: #718096;
-            margin-bottom: 2rem;
-            font-size: 1.1rem;
-            font-weight: 500;
-        }
+.stat-item-label {
+    font-size: 1.15rem;
+    color: #475569;
+    font-weight: 700;
+}
 
-        .price-features {
-            list-style: none;
-            margin-bottom: 2.5rem;
-            text-align: left;
-        }
+/* === PILOT BANNER === */
+.pilot-banner {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: white;
+    padding: 5rem 2rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
 
-        .price-features li {
-            padding: 1rem 0;
-            border-bottom: 1px solid #e2e8f0;
-            color: #4a5568;
-            font-size: 1.05rem;
-            font-weight: 500;
-        }
+.pilot-banner::before {
+    content: '🎉';
+    position: absolute;
+    font-size: 20rem;
+    opacity: 0.08;
+    top: -80px;
+    right: -80px;
+    animation: rotate 20s linear infinite;
+}
 
-        .price-features li:before {
-            content: "✓ ";
-            color: #48bb78;
-            font-weight: bold;
-            margin-right: 0.8rem;
-            font-size: 1.3rem;
-        }
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
 
-        .price-button {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 1.2rem 2.5rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 800;
-            font-size: 1.1rem;
-            display: inline-block;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
-        }
+.pilot-banner h2 {
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 900;
+    text-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    letter-spacing: -1px;
+}
 
-        .price-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
-        }
+.pilot-banner p {
+    font-size: 1.4rem;
+    margin-bottom: 2.5rem;
+    font-weight: 500;
+    opacity: 0.95;
+}
 
-        .pilot-banner {
-            background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
-            color: white;
-            padding: 5rem 2rem;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
+/* === SECTION STYLES === */
+.section {
+    padding: 6rem 2rem;
+    position: relative;
+}
 
-        .pilot-banner::before {
-            content: '🎉';
-            position: absolute;
-            font-size: 20rem;
-            opacity: 0.1;
-            top: -50px;
-            right: -50px;
-            animation: float 6s ease-in-out infinite;
-        }
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-        }
+.section-title {
+    text-align: center;
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+    color: #1a202c;
+    font-weight: 900;
+    letter-spacing: -1.5px;
+    background: linear-gradient(135deg, #1a202c 0%, #475569 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
 
-        .pilot-banner h2 {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
-            font-weight: 900;
-            text-shadow: 0 4px 20px rgba(0,0,0,0.2);
-        }
+.section-subtitle {
+    text-align: center;
+    font-size: 1.35rem;
+    color: #64748b;
+    margin-bottom: 5rem;
+    font-weight: 500;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
 
-        .pilot-banner p {
-            font-size: 1.5rem;
-            margin-bottom: 2.5rem;
-            font-weight: 500;
-        }
+/* === FEATURES GRID === */
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 2.5rem;
+    margin-top: 4rem;
+}
 
-        .testimonial {
-            background: white;
-            padding: 3rem;
-            border-radius: 24px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
-            margin: 1rem 0;
-            transition: all 0.3s ease;
-            border-left: 6px solid #667eea;
-            display: none; /* Hidden until you have real testimonials */
-        }
+.feature-card {
+    background: white;
+    padding: 3rem;
+    border-radius: 28px;
+    box-shadow: 0 10px 40px rgba(99, 102, 241, 0.06);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 2px solid #f1f5f9;
+    position: relative;
+    overflow: hidden;
+}
 
-        .testimonial:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 50px rgba(102, 126, 234, 0.2);
-        }
+.feature-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.02) 0%, rgba(139, 92, 246, 0.02) 100%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
 
-        .testimonial-text {
-            font-style: italic;
-            color: #4a5568;
-            margin-bottom: 1.5rem;
-            line-height: 1.9;
-            font-size: 1.15rem;
-        }
+.feature-card:hover::before {
+    opacity: 1;
+}
 
-        .testimonial-author {
-            font-weight: 800;
-            color: #1a202c;
-            font-size: 1.1rem;
-        }
+.feature-card:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 20px 60px rgba(99, 102, 241, 0.15);
+    border-color: #c7d2fe;
+}
 
-        .form-container {
-            max-width: 700px;
-            margin: 4rem auto;
-            background: white;
-            padding: 4rem;
-            border-radius: 24px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
-        }
+.feature-icon {
+    font-size: 4rem;
+    margin-bottom: 1.75rem;
+    filter: drop-shadow(0 4px 12px rgba(99, 102, 241, 0.15));
+    transition: transform 0.4s ease;
+}
 
-        .form-group {
-            margin-bottom: 2rem;
-        }
+.feature-card:hover .feature-icon {
+    transform: scale(1.1) rotate(5deg);
+}
 
-        .form-group label {
-            display: block;
-            margin-bottom: 0.8rem;
-            font-weight: 700;
-            color: #1a202c;
-            font-size: 1.05rem;
-        }
+.feature-card h3 {
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+    color: #1a202c;
+    font-weight: 800;
+}
 
-        .form-group input,
-        .form-group textarea,
-        .form-group select {
-            width: 100%;
-            padding: 1rem 1.2rem;
-            border: 2px solid #e2e8f0;
-            border-radius: 12px;
-            font-size: 1.05rem;
-            transition: all 0.3s ease;
-            font-family: 'Inter', sans-serif;
-        }
+.feature-card p {
+    color: #64748b;
+    line-height: 1.8;
+    font-size: 1.05rem;
+    font-weight: 500;
+}
 
-        .form-group input:focus,
-        .form-group textarea:focus,
-        .form-group select:focus {
-            outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
-        }
+/* Continue in Part 2... */
+/* === PRICING SECTION === */
+.pricing {
+    background: linear-gradient(135deg, #fafbff 0%, #f8fafc 100%);
+}
 
-        .form-group textarea {
-            resize: vertical;
-            min-height: 140px;
-        }
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2.5rem;
+    margin-top: 4rem;
+    max-width: 1600px;
+    margin-left: auto;
+    margin-right: auto;
+}
 
-        .submit-button {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 1.3rem 3rem;
-            border: none;
-            border-radius: 50px;
-            font-size: 1.2rem;
-            font-weight: 800;
-            cursor: pointer;
-            width: 100%;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
-        }
+.price-card {
+    background: white;
+    padding: 3rem 2.5rem;
+    border-radius: 28px;
+    box-shadow: 0 10px 40px rgba(99, 102, 241, 0.06);
+    text-align: center;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 3px solid #f1f5f9;
+    position: relative;
+    overflow: hidden;
+}
 
-        .submit-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
-        }
+.price-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background: linear-gradient(90deg, #6366f1, #8b5cf6);
+    transform: scaleX(0);
+    transition: transform 0.4s ease;
+}
 
-        .success-message {
-            background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
-            color: white;
-            padding: 1.5rem;
-            border-radius: 12px;
-            margin-top: 1.5rem;
-            display: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-        }
+.price-card:hover::before {
+    transform: scaleX(1);
+}
 
-        .cta-section {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+.price-card:hover {
+    transform: translateY(-12px) scale(1.02);
+    box-shadow: 0 25px 70px rgba(99, 102, 241, 0.15);
+    border-color: #c7d2fe;
+}
+
+.price-card.featured {
+    border: 3px solid #6366f1;
+    transform: scale(1.05);
+    box-shadow: 0 20px 70px rgba(99, 102, 241, 0.2);
+}
+
+.price-card.featured::before {
+    transform: scaleX(1);
+    height: 8px;
+}
+
+.popular-badge {
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+    color: white;
+    padding: 0.625rem 1.75rem;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 0.875rem;
+    margin-bottom: 1.5rem;
+    display: inline-block;
+    box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
+}
+
+.price-card h3 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #1a202c;
+    font-weight: 800;
+}
+
+.price {
+    font-size: 3.5rem;
+    font-weight: 900;
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0.5rem;
+    line-height: 1;
+}
+
+.price-period {
+    color: #64748b;
+    margin-bottom: 2rem;
+    font-size: 1.05rem;
+    font-weight: 600;
+}
+
+.price-features {
+    list-style: none;
+    margin-bottom: 2.5rem;
+    text-align: left;
+}
+
+.price-features li {
+    padding: 1.125rem 0;
+    border-bottom: 1px solid #f1f5f9;
+    color: #475569;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.price-features li:hover {
+    padding-left: 0.5rem;
+    color: #6366f1;
+}
+
+.price-features li:before {
+    content: "✓ ";
+    color: #10b981;
+    font-weight: bold;
+    margin-right: 0.875rem;
+    font-size: 1.4rem;
+}
+
+.price-button {
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+    color: white;
+    padding: 1.25rem 2.75rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 1.05rem;
+    display: inline-block;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 35px rgba(99, 102, 241, 0.3);
+    border: none;
+    cursor: pointer;
+}
+
+.price-button:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 15px 50px rgba(99, 102, 241, 0.4);
+}
+
+.comparison-badge {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    margin-top: 1rem;
+    display: inline-block;
+    box-shadow: 0 4px 20px rgba(245, 87, 108, 0.3);
+}
+
+/* === PER-STUDENT PRICING === */
+.per-student-pricing {
+    background: white;
+}
+
+.per-student-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2.5rem;
+    max-width: 1400px;
+    margin: 4rem auto;
+}
+
+.per-student-card {
+    background: white;
+    padding: 2.75rem 2.25rem;
+    border-radius: 28px;
+    box-shadow: 0 10px 40px rgba(99, 102, 241, 0.06);
+    text-align: center;
+    border: 2px solid #f1f5f9;
+    transition: all 0.3s ease;
+}
+
+.per-student-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 60px rgba(99, 102, 241, 0.12);
+    border-color: #c7d2fe;
+}
+
+.per-student-card.featured {
+    border: 3px solid #6366f1;
+    transform: scale(1.05);
+    box-shadow: 0 20px 70px rgba(99, 102, 241, 0.2);
+    position: relative;
+}
+
+.featured-badge {
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+    color: white;
+    padding: 0.5rem 1.5rem;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
+}
+
+.per-student-title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #1a202c;
+    margin-bottom: 0.5rem;
+}
+
+.per-student-subtitle {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #64748b;
+    margin-bottom: 1.5rem;
+}
+
+.pricing-section {
+    margin: 1.75rem 0;
+}
+
+.pricing-label {
+    font-size: 0.9rem;
+    color: #64748b;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.pricing-amount {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 0.25rem;
+}
+
+.currency {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #1a202c;
+}
+
+.amount {
+    font-size: 3rem;
+    font-weight: 900;
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+}
+
+.period {
+    font-size: 1rem;
+    color: #64748b;
+    font-weight: 600;
+    margin-top: 0.25rem;
+}
+
+.divider {
+    border-top: 2px solid #f1f5f9;
+    margin: 1.75rem 0;
+    padding-top: 1.75rem;
+}
+
+.annual-amount .amount {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.total-box {
+    background: #f8fafc;
+    padding: 1.25rem;
+    border-radius: 16px;
+    margin-top: 1.75rem;
+}
+
+.total-amount {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #1a202c;
+}
+
+.total-label {
+    font-size: 0.9rem;
+    color: #64748b;
+    font-weight: 600;
+}
+
+/* === CONTACT FORM === */
+.form-container {
+    max-width: 700px;
+    margin: 4rem auto;
+    background: white;
+    padding: 4rem;
+    border-radius: 28px;
+    box-shadow: 0 20px 70px rgba(99, 102, 241, 0.1);
+    border: 2px solid #f1f5f9;
+}
+
+.form-group {
+    margin-bottom: 2rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.875rem;
+    font-weight: 700;
+    color: #1a202c;
+    font-size: 1.05rem;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 1.125rem 1.5rem;
+    border: 2px solid #e2e8f0;
+    border-radius: 16px;
+    font-size: 1.05rem;
+    transition: all 0.3s ease;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    background: #fafbff;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: #6366f1;
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+    background: white;
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 150px;
+}
+
+.submit-button {
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+    color: white;
+    padding: 1.375rem 3rem;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.2rem;
+    font-weight: 800;
+    cursor: pointer;
+    width: 100%;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 40px rgba(99, 102, 241, 0.3);
+}
+
+.submit-button:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 15px 50px rgba(99, 102, 241, 0.4);
+}
+
+.submit-button:active {
+    transform: translateY(-2px);
+}
+
+.success-message {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: white;
+    padding: 1.75rem;
+    border-radius: 16px;
+    margin-top: 2rem;
+    display: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3);
+}
+
+/* === CTA SECTION === */
+.cta-section {
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #7c3aed 100%);
     color: white;
     padding: 6rem 2rem;
     text-align: center;
+    position: relative;
+    overflow: hidden;
 }
 
-        .cta-section h2 {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
-            font-weight: 900;
-            text-shadow: 0 4px 20px rgba(0,0,0,0.2);
-        }
+.cta-section::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -20%;
+    width: 80%;
+    height: 150%;
+    background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%);
+    border-radius: 50%;
+}
 
-        .cta-section p {
-            font-size: 1.4rem;
-            margin-bottom: 2.5rem;
-            font-weight: 500;
-        }
+.cta-section h2 {
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 900;
+    text-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    letter-spacing: -1px;
+    position: relative;
+    z-index: 1;
+}
 
-        .footer {
-            background: #1a202c;
-            color: white;
-            padding: 4rem 2rem;
-            text-align: center;
-        }
+.cta-section p {
+    font-size: 1.35rem;
+    margin-bottom: 2.75rem;
+    font-weight: 500;
+    opacity: 0.95;
+    position: relative;
+    z-index: 1;
+}
 
-        .contact-info {
-            margin-bottom: 2rem;
-        }
+/* === FOOTER === */
+.footer {
+    background: #1a202c;
+    color: white;
+    padding: 4rem 2rem;
+    text-align: center;
+}
 
-        .contact-info a {
-            color: #667eea;
-            text-decoration: none;
-            margin: 0 1.5rem;
-            font-weight: 600;
-            transition: color 0.3s ease;
-        }
+.contact-info {
+    margin-bottom: 2.5rem;
+}
 
-        .contact-info a:hover {
-            color: #764ba2;
-        }
+.contact-info p:first-child {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 1.25rem;
+}
 
-        .comparison-badge {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            color: white;
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 1rem;
-            margin-top: 1rem;
-            display: inline-block;
-            box-shadow: 0 4px 15px rgba(245, 87, 108, 0.3);
-        }
-        .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 2rem;
-        }
+.contact-info a {
+    color: #8b5cf6;
+    text-decoration: none;
+    margin: 0 1.5rem;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+}
 
-        .nav-links {
-            display: flex;
-            gap: 2.5rem;
-            list-style: none;
-            align-items: center;
-        }
+.contact-info a:hover {
+    color: #a78bfa;
+    transform: translateY(-2px);
+}
 
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            position: relative;
-        }
+/* === RESPONSIVE === */
+@media (max-width: 1400px) {
+    .pricing-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
 
-        .nav-links a:hover {
-            opacity: 0.8;
-            transform: translateY(-2px);
-        }
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2.75rem;
+    }
 
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: white;
-            transition: width 0.3s ease;
-        }
+    .hero-description {
+        font-size: 1.2rem;
+    }
 
-        .nav-links a:hover::after {
-            width: 100%;
-        }
+    .hero-subdescription {
+        font-size: 1.05rem;
+    }
 
-       @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
+    .section-title {
+        font-size: 2.5rem;
+    }
 
-            .hero p {
-                font-size: 1.2rem;
-            }
+    .features-grid,
+    .pricing-grid,
+    .per-student-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .price-card.featured {
+        transform: scale(1);
+    }
 
-            .section-title {
-                font-size: 2.5rem;
-            }
+    .nav-container {
+        flex-direction: column;
+        gap: 1rem;
+    }
 
-            .features-grid,
-            .pricing-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .price-card.featured {
-                transform: scale(1);
-            }
+    .nav-links {
+        flex-direction: column;
+        gap: 1rem;
+    }
 
-            .stat-number {
-                font-size: 2rem;
-            }
+    .cta-section h2 {
+        font-size: 2.25rem;
+    }
 
-            .nav-container {
-                flex-direction: column;
-                gap: 1rem;
-            }
+    .cta-section p {
+        font-size: 1.15rem;
+    }
 
-            .cta-section h2 {
-                font-size: 2rem;
-            }
+    .hero-buttons {
+        flex-direction: column;
+        align-items: stretch;
+    }
 
-            .cta-section p {
-                font-size: 1.1rem;
-            }
+    .hero-buttons .btn-primary,
+    .hero-buttons .btn-secondary {
+        width: 100%;
+    }
 
-            .btn-primary {
-                padding: 1rem 2rem;
-                font-size: 1rem;
-                white-space: nowrap;
-            }
+    .form-container {
+        padding: 2.5rem 1.75rem;
+    }
 
-            .hero-buttons {
-                flex-direction: column;
-                align-items: stretch;
-            }
+    .pilot-banner h2 {
+        font-size: 2.25rem;
+    }
 
-            .hero-buttons .btn-primary,
-            .hero-buttons .btn-secondary {
-                width: 100%;
-                text-align: center;
-            }
-        }
+    .pilot-banner p {
+        font-size: 1.15rem;
+    }
+}
+    </style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SchoolEdge - Premium School Management System for South Africa</title>
+    <style>
+        /* INSERT PART 1 CSS HERE */
+        /* INSERT PART 2 CSS HERE */
     </style>
 </head>
 <body>
-  <header class="header">
-    <div class="nav-container">
-        <div class="logo">
-            <span class="logo-icon">📚</span> SchoolEdge
+    <!-- HEADER -->
+    <header class="header" id="header">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-icon">📚</span> SchoolEdge
+            </div>
+            <nav class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#features">Features</a>
+                <a href="#pricing">Pricing</a>
+                <a href="#contact">Contact</a>
+            </nav>
+            <a href="#contact" class="cta-button">Get Started Free</a>
         </div>
-        <nav class="nav-links">
-            <a href="#home">Home</a>
-            <a href="#features">Features</a>
-            <a href="#pricing">Pricing</a>
-            <a href="#contact">Contact</a>
-        </nav>
-        <a href="#contact" class="cta-button">Get Started Free</a>
-    </div>
-</header>
+    </header>
 
+    <!-- HERO SECTION -->
     <section class="hero" id="home">
-    <div class="hero-content">
-        <div class="container">
-            <div style="display: inline-block; background: rgba(255,255,255,0.2); backdrop-filter: blur(10px); padding: 0.8rem 2rem; border-radius: 50px; margin-bottom: 2rem; border: 2px solid rgba(255,255,255,0.3);">
-                <span style="font-weight: 700; font-size: 1.1rem;">🚀 The Future of School Management is Here</span>
+        <div class="hero-content">
+            <div class="hero-badge">
+                🚀 The Future of School Management is Here
             </div>
             
             <h1>Transform Your School with <span class="hero-highlight">SchoolEdge</span></h1>
             
-            <p style="font-size: 1.6rem; max-width: 900px; margin: 0 auto 1.5rem; line-height: 1.7;">
-                We've built the most <strong>powerful, intuitive, and beautiful</strong> school management system specifically for South African schools. 
+            <p class="hero-description">
+                We've built the most <strong>powerful, intuitive, and beautiful</strong> school management system specifically for South African schools.
             </p>
             
-            <p style="font-size: 1.3rem; max-width: 850px; margin: 0 auto 3rem; opacity: 0.95; font-weight: 500;">
+            <p class="hero-subdescription">
                 Manage students, track finances, generate reports, communicate with parents, and run your entire school from one stunning platform. <strong>50% cheaper than competitors.</strong> Zero compromises on quality.
             </p>
             
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; max-width: 1000px; margin: 0 auto 3rem; text-align: center;">
-                <div style="background: rgba(255,255,255,0.15); backdrop-filter: blur(10px); padding: 1.5rem; border-radius: 20px; border: 2px solid rgba(255,255,255,0.3);">
-                    <div style="font-size: 2.5rem; font-weight: 900; margin-bottom: 0.5rem;">100%</div>
-                    <div style="font-size: 1rem; font-weight: 600;">Cloud-Based</div>
+            <div class="hero-stats">
+                <div class="stat-box">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Cloud-Based</div>
                 </div>
-                <div style="background: rgba(255,255,255,0.15); backdrop-filter: blur(10px); padding: 1.5rem; border-radius: 20px; border: 2px solid rgba(255,255,255,0.3);">
-                    <div style="font-size: 2.5rem; font-weight: 900; margin-bottom: 0.5rem;">24/7</div>
-                    <div style="font-size: 1rem; font-weight: 600;">Access Anywhere</div>
+                <div class="stat-box">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Access Anywhere</div>
                 </div>
-                <div style="background: rgba(255,255,255,0.15); backdrop-filter: blur(10px); padding: 1.5rem; border-radius: 20px; border: 2px solid rgba(255,255,255,0.3);">
-                    <div style="font-size: 2.5rem; font-weight: 900; margin-bottom: 0.5rem;">POPIA</div>
-                    <div style="font-size: 1rem; font-weight: 600;">Fully Compliant</div>
+                <div class="stat-box">
+                    <div class="stat-number">POPIA</div>
+                    <div class="stat-label">Fully Compliant</div>
                 </div>
-                <div style="background: rgba(255,255,255,0.15); backdrop-filter: blur(10px); padding: 1.5rem; border-radius: 20px; border: 2px solid rgba(255,255,255,0.3);">
-                    <div style="font-size: 2.5rem; font-weight: 900; margin-bottom: 0.5rem;">SA</div>
-                    <div style="font-size: 1rem; font-weight: 600;">Built for SA Schools</div>
+                <div class="stat-box">
+                    <div class="stat-number">SA</div>
+                    <div class="stat-label">Built for SA Schools</div>
                 </div>
             </div>
             
             <div class="hero-buttons">
-                <a href="#contact" class="btn-primary">Start Free 3-Month Trial</a>
+                <a href="#contact" class="btn-primary"><span>Start Free 3-Month Trial</span></a>
                 <a href="#features" class="btn-secondary">See How It Works</a>
             </div>
             
-            <p style="margin-top: 2rem; font-size: 1.1rem; opacity: 0.9; font-weight: 600;">
+            <p class="hero-footer-text">
                 ✓ No credit card required &nbsp;•&nbsp; ✓ Setup in 2 weeks &nbsp;•&nbsp; ✓ Full training included
             </p>
         </div>
-    </div>
-</section>
+    </section>
+
+    <!-- STATS SECTION -->
     <section class="stats">
         <div class="stats-grid">
             <div class="stat-item">
-                <div class="stat-number">15+</div>
-                <div class="stat-label">Hours Saved Weekly</div>
+                <div class="stat-item-number">15+</div>
+                <div class="stat-item-label">Hours Saved Weekly</div>
             </div>
             <div class="stat-item">
-                <div class="stat-number">85%</div>
-                <div class="stat-label">Less Paperwork</div>
+                <div class="stat-item-number">85%</div>
+                <div class="stat-item-label">Less Paperwork</div>
             </div>
             <div class="stat-item">
-                <div class="stat-number">50%</div>
-                <div class="stat-label">Cheaper Than Competitors</div>
+                <div class="stat-item-number">50%</div>
+                <div class="stat-item-label">Cheaper Than Competitors</div>
             </div>
             <div class="stat-item">
-                <div class="stat-number">2 Weeks</div>
-                <div class="stat-label">To Full Operation</div>
+                <div class="stat-item-number">2 Weeks</div>
+                <div class="stat-item-label">To Full Operation</div>
             </div>
         </div>
     </section>
 
+    <!-- PILOT BANNER -->
     <section class="pilot-banner">
         <h2>🎉 Launch Special: 3 Months Completely FREE</h2>
         <p>Test everything. Train your staff. Prove the value. Zero risk. Zero credit card required.</p>
-        <a href="#contact" class="btn-primary">Claim Your Free Pilot Program →</a>
+        <a href="#contact" class="btn-primary"><span>Claim Your Free Pilot Program →</span></a>
     </section>
 
+    <!-- FEATURES SECTION -->
     <section class="section" id="features">
         <div class="container">
             <h2 class="section-title">Everything Your School Needs</h2>
@@ -834,7 +1294,7 @@
                 <div class="feature-card">
                     <div class="feature-icon">💰</div>
                     <h3>Financial Management</h3>
-                    <p>Track fees, process payments, manage balances, and generate financial reports.</p>
+                    <p>Track fees, process payments, manage balances, and generate financial reports with ease and precision.</p>
                 </div>
 
                 <div class="feature-card">
@@ -882,6 +1342,7 @@
         </div>
     </section>
 
+    <!-- PRICING SECTION -->
     <section class="section pricing" id="pricing">
         <div class="container">
             <h2 class="section-title">Pricing That Beats Every Competitor</h2>
@@ -970,148 +1431,147 @@
         </div>
     </section>
 
-    <!-- PER-STUDENT PRICING SECTION (Updated with 15% discount) -->
-    <section class="section per-student-pricing" style="background: white;">
+    <!-- PER-STUDENT PRICING SECTION -->
+    <section class="section per-student-pricing">
         <div class="container">
             <h2 class="section-title">Per-Student Pricing Breakdown</h2>
             <p class="section-subtitle">See exactly what you pay per student. The more students, the better the value.</p>
             
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; max-width: 1400px; margin: 4rem auto;">
-                
+            <div class="per-student-grid">
                 <!-- Starter Tier -->
-                <div style="background: white; padding: 2.5rem 2rem; border-radius: 24px; box-shadow: 0 10px 40px rgba(0,0,0,0.08); text-align: center; border: 2px solid #e2e8f0; transition: all 0.3s ease;">
-                    <h3 style="font-size: 1.5rem; font-weight: 800; color: #1a202c; margin-bottom: 0.5rem;">Starter</h3>
-                    <div style="font-size: 1rem; font-weight: 600; color: #718096; margin-bottom: 1.5rem;">Up to 100 students</div>
+                <div class="per-student-card">
+                    <h3 class="per-student-title">Starter</h3>
+                    <div class="per-student-subtitle">Up to 100 students</div>
                     
-                    <div style="margin: 1.5rem 0;">
-                        <div style="font-size: 0.9rem; color: #718096; margin-bottom: 0.5rem;">Monthly</div>
-                        <div>
-                            <span style="font-size: 1.2rem; font-weight: 700; color: #1a202c;">R</span>
-                            <span style="font-size: 3rem; font-weight: 900; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1;">19.43</span>
+                    <div class="pricing-section">
+                        <div class="pricing-label">Monthly</div>
+                        <div class="pricing-amount">
+                            <span class="currency">R</span>
+                            <span class="amount">19.43</span>
                         </div>
-                        <span style="font-size: 1rem; color: #718096; font-weight: 600;">per student/month</span>
+                        <div class="period">per student/month</div>
                     </div>
 
-                    <div style="border-top: 2px solid #e2e8f0; margin: 1.5rem 0; padding-top: 1.5rem;">
-                        <div style="font-size: 0.9rem; color: #718096; margin-bottom: 0.5rem;">Annual (Save 15%)</div>
-                        <div>
-                            <span style="font-size: 1.2rem; font-weight: 700; color: #1a202c;">R</span>
-                            <span style="font-size: 3rem; font-weight: 900; background: linear-gradient(135deg, #48bb78 0%, #38a169 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1;">198.11</span>
+                    <div class="divider">
+                        <div class="pricing-label">Annual (Save 15%)</div>
+                        <div class="pricing-amount annual-amount">
+                            <span class="currency">R</span>
+                            <span class="amount">198.11</span>
                         </div>
-                        <span style="font-size: 1rem; color: #718096; font-weight: 600;">per student/year</span>
+                        <div class="period">per student/year</div>
                     </div>
 
-                    <div style="background: #f7fafc; padding: 1rem; border-radius: 12px; margin-top: 1.5rem;">
-                        <div style="font-size: 1.3rem; font-weight: 800; color: #1a202c;">R1,943/mo</div>
-                        <div style="font-size: 0.9rem; color: #718096; font-weight: 600;">Total monthly cost</div>
+                    <div class="total-box">
+                        <div class="total-amount">R1,943/mo</div>
+                        <div class="total-label">Total monthly cost</div>
                     </div>
                 </div>
 
                 <!-- Growth Tier -->
-                <div style="background: white; padding: 2.5rem 2rem; border-radius: 24px; box-shadow: 0 20px 60px rgba(102, 126, 234, 0.25); text-align: center; border: 3px solid #667eea; position: relative; transition: all 0.3s ease; transform: scale(1.05);">
-                    <div style="position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 0.5rem 1.5rem; border-radius: 50px; font-weight: 700; font-size: 0.85rem; box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);">🔥 MOST POPULAR</div>
+                <div class="per-student-card featured">
+                    <div class="featured-badge">🔥 MOST POPULAR</div>
                     
-                    <h3 style="font-size: 1.5rem; font-weight: 800; color: #1a202c; margin-bottom: 0.5rem; margin-top: 0.5rem;">Growth</h3>
-                    <div style="font-size: 1rem; font-weight: 600; color: #718096; margin-bottom: 1.5rem;">101-250 students</div>
+                    <h3 class="per-student-title">Growth</h3>
+                    <div class="per-student-subtitle">101-250 students</div>
                     
-                    <div style="margin: 1.5rem 0;">
-                        <div style="font-size: 0.9rem; color: #718096; margin-bottom: 0.5rem;">Monthly</div>
-                        <div>
-                            <span style="font-size: 1.2rem; font-weight: 700; color: #1a202c;">R</span>
-                            <span style="font-size: 3rem; font-weight: 900; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1;">14.97</span>
+                    <div class="pricing-section">
+                        <div class="pricing-label">Monthly</div>
+                        <div class="pricing-amount">
+                            <span class="currency">R</span>
+                            <span class="amount">14.97</span>
                         </div>
-                        <span style="font-size: 1rem; color: #718096; font-weight: 600;">per student/month</span>
-                        <div style="font-size: 0.85rem; color: #718096; margin-top: 0.3rem;">(at 250 students)</div>
+                        <div class="period">per student/month</div>
+                        <div style="font-size: 0.85rem; color: #64748b; margin-top: 0.3rem;">(at 250 students)</div>
                     </div>
 
-                    <div style="border-top: 2px solid #e2e8f0; margin: 1.5rem 0; padding-top: 1.5rem;">
-                        <div style="font-size: 0.9rem; color: #718096; margin-bottom: 0.5rem;">Annual (Save 15%)</div>
-                        <div>
-                            <span style="font-size: 1.2rem; font-weight: 700; color: #1a202c;">R</span>
-                            <span style="font-size: 3rem; font-weight: 900; background: linear-gradient(135deg, #48bb78 0%, #38a169 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1;">152.73</span>
+                    <div class="divider">
+                        <div class="pricing-label">Annual (Save 15%)</div>
+                        <div class="pricing-amount annual-amount">
+                            <span class="currency">R</span>
+                            <span class="amount">152.73</span>
                         </div>
-                        <span style="font-size: 1rem; color: #718096; font-weight: 600;">per student/year</span>
-                        <div style="font-size: 0.85rem; color: #718096; margin-top: 0.3rem;">(at 250 students)</div>
+                        <div class="period">per student/year</div>
+                        <div style="font-size: 0.85rem; color: #64748b; margin-top: 0.3rem;">(at 250 students)</div>
                     </div>
 
-                    <div style="background: #f7fafc; padding: 1rem; border-radius: 12px; margin-top: 1.5rem;">
-                        <div style="font-size: 1.3rem; font-weight: 800; color: #1a202c;">R3,743/mo</div>
-                        <div style="font-size: 0.9rem; color: #718096; font-weight: 600;">Total monthly cost</div>
+                    <div class="total-box">
+                        <div class="total-amount">R3,743/mo</div>
+                        <div class="total-label">Total monthly cost</div>
                     </div>
                 </div>
 
                 <!-- Professional Tier -->
-                <div style="background: white; padding: 2.5rem 2rem; border-radius: 24px; box-shadow: 0 10px 40px rgba(0,0,0,0.08); text-align: center; border: 2px solid #e2e8f0; transition: all 0.3s ease;">
-                    <h3 style="font-size: 1.5rem; font-weight: 800; color: #1a202c; margin-bottom: 0.5rem;">Professional</h3>
-                    <div style="font-size: 1rem; font-weight: 600; color: #718096; margin-bottom: 1.5rem;">251-500 students</div>
+                <div class="per-student-card">
+                    <h3 class="per-student-title">Professional</h3>
+                    <div class="per-student-subtitle">251-500 students</div>
                     
-                    <div style="margin: 1.5rem 0;">
-                        <div style="font-size: 0.9rem; color: #718096; margin-bottom: 0.5rem;">Monthly</div>
-                        <div>
-                            <span style="font-size: 1.2rem; font-weight: 700; color: #1a202c;">R</span>
-                            <span style="font-size: 3rem; font-weight: 900; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1;">11.99</span>
+                    <div class="pricing-section">
+                        <div class="pricing-label">Monthly</div>
+                        <div class="pricing-amount">
+                            <span class="currency">R</span>
+                            <span class="amount">11.99</span>
                         </div>
-                        <span style="font-size: 1rem; color: #718096; font-weight: 600;">per student/month</span>
-                        <div style="font-size: 0.85rem; color: #718096; margin-top: 0.3rem;">(at 500 students)</div>
+                        <div class="period">per student/month</div>
+                        <div style="font-size: 0.85rem; color: #64748b; margin-top: 0.3rem;">(at 500 students)</div>
                     </div>
 
-                    <div style="border-top: 2px solid #e2e8f0; margin: 1.5rem 0; padding-top: 1.5rem;">
-                        <div style="font-size: 0.9rem; color: #718096; margin-bottom: 0.5rem;">Annual (Save 15%)</div>
-                        <div>
-                            <span style="font-size: 1.2rem; font-weight: 700; color: #1a202c;">R</span>
-                            <span style="font-size: 3rem; font-weight: 900; background: linear-gradient(135deg, #48bb78 0%, #38a169 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1;">122.29</span>
+                    <div class="divider">
+                        <div class="pricing-label">Annual (Save 15%)</div>
+                        <div class="pricing-amount annual-amount">
+                            <span class="currency">R</span>
+                            <span class="amount">122.29</span>
                         </div>
-                        <span style="font-size: 1rem; color: #718096; font-weight: 600;">per student/year</span>
-                        <div style="font-size: 0.85rem; color: #718096; margin-top: 0.3rem;">(at 500 students)</div>
+                        <div class="period">per student/year</div>
+                        <div style="font-size: 0.85rem; color: #64748b; margin-top: 0.3rem;">(at 500 students)</div>
                     </div>
 
-                    <div style="background: #f7fafc; padding: 1rem; border-radius: 12px; margin-top: 1.5rem;">
-                        <div style="font-size: 1.3rem; font-weight: 800; color: #1a202c;">R5,993/mo</div>
-                        <div style="font-size: 0.9rem; color: #718096; font-weight: 600;">Total monthly cost</div>
+                    <div class="total-box">
+                        <div class="total-amount">R5,993/mo</div>
+                        <div class="total-label">Total monthly cost</div>
                     </div>
                 </div>
 
                 <!-- Enterprise Tier -->
-                <div style="background: white; padding: 2.5rem 2rem; border-radius: 24px; box-shadow: 0 10px 40px rgba(0,0,0,0.08); text-align: center; border: 2px solid #e2e8f0; transition: all 0.3s ease;">
-                    <h3 style="font-size: 1.5rem; font-weight: 800; color: #1a202c; margin-bottom: 0.5rem;">Enterprise</h3>
-                    <div style="font-size: 1rem; font-weight: 600; color: #718096; margin-bottom: 1.5rem;">501-1,000 students</div>
+                <div class="per-student-card">
+                    <h3 class="per-student-title">Enterprise</h3>
+                    <div class="per-student-subtitle">501-1,000 students</div>
                     
-                    <div style="margin: 1.5rem 0;">
-                        <div style="font-size: 0.9rem; color: #718096; margin-bottom: 0.5rem;">Monthly</div>
-                        <div>
-                            <span style="font-size: 1.2rem; font-weight: 700; color: #1a202c;">R</span>
-                            <span style="font-size: 3rem; font-weight: 900; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1;">9.74</span>
+                    <div class="pricing-section">
+                        <div class="pricing-label">Monthly</div>
+                        <div class="pricing-amount">
+                            <span class="currency">R</span>
+                            <span class="amount">9.74</span>
                         </div>
-                        <span style="font-size: 1rem; color: #718096; font-weight: 600;">per student/month</span>
-                        <div style="font-size: 0.85rem; color: #718096; margin-top: 0.3rem;">(at 1,000 students)</div>
+                        <div class="period">per student/month</div>
+                        <div style="font-size: 0.85rem; color: #64748b; margin-top: 0.3rem;">(at 1,000 students)</div>
                     </div>
 
-                    <div style="border-top: 2px solid #e2e8f0; margin: 1.5rem 0; padding-top: 1.5rem;">
-                        <div style="font-size: 0.9rem; color: #718096; margin-bottom: 0.5rem;">Annual (Save 15%)</div>
-                        <div>
-                            <span style="font-size: 1.2rem; font-weight: 700; color: #1a202c;">R</span>
-                            <span style="font-size: 3rem; font-weight: 900; background: linear-gradient(135deg, #48bb78 0%, #38a169 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1;">99.37</span>
+                    <div class="divider">
+                        <div class="pricing-label">Annual (Save 15%)</div>
+                        <div class="pricing-amount annual-amount">
+                            <span class="currency">R</span>
+                            <span class="amount">99.37</span>
                         </div>
-                        <span style="font-size: 1rem; color: #718096; font-weight: 600;">per student/year</span>
-                        <div style="font-size: 0.85rem; color: #718096; margin-top: 0.3rem;">(at 1,000 students)</div>
+                        <div class="period">per student/year</div>
+                        <div style="font-size: 0.85rem; color: #64748b; margin-top: 0.3rem;">(at 1,000 students)</div>
                     </div>
 
-                    <div style="background: #f7fafc; padding: 1rem; border-radius: 12px; margin-top: 1.5rem;">
-                        <div style="font-size: 1.3rem; font-weight: 800; color: #1a202c;">R9,743/mo</div>
-                        <div style="font-size: 0.9rem; color: #718096; font-weight: 600;">Total monthly cost</div>
+                    <div class="total-box">
+                        <div class="total-amount">R9,743/mo</div>
+                        <div class="total-label">Total monthly cost</div>
                     </div>
                 </div>
-
             </div>
 
-            <p style="text-align: center; margin-top: 3rem; font-size: 1.2rem; color: #4a5568; font-weight: 600; line-height: 1.8;">
+            <p style="text-align: center; margin-top: 3rem; font-size: 1.2rem; color: #475569; font-weight: 600; line-height: 1.8;">
                 💡 <strong>All plans include:</strong> Parent portal • Unlimited admin & teacher accounts • Full feature access • POPIA compliance<br>
                 🎉 <strong>Start with 3 months FREE</strong> on any plan
             </p>
         </div>
     </section>
 
-    <section class="section" id="contact" style="background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);">
+    <!-- CONTACT FORM SECTION -->
+    <section class="section" id="contact" style="background: linear-gradient(135deg, #fafbff 0%, #f8fafc 100%);">
         <div class="container">
             <h2 class="section-title">Start Your Free 3-Month Trial</h2>
             <p class="section-subtitle">No credit card required. Full features. Zero risk. Be operational in 2 weeks.</p>
@@ -1198,18 +1658,20 @@
         </div>
     </section>
 
+    <!-- CTA SECTION -->
     <section class="cta-section">
         <div class="container">
             <h2>Ready to Transform Your School?</h2>
             <p>Join forward-thinking schools already saving time and money with SchoolEdge</p>
-            <a href="#contact" class="btn-primary">Start Your Free Trial Today →</a>
+            <a href="#contact" class="btn-primary"><span>Start Your Free Trial Today →</span></a>
         </div>
     </section>
 
+    <!-- FOOTER -->
     <footer class="footer">
         <div class="contact-info">
-            <p style="font-size: 1.3rem; font-weight: 700; margin-bottom: 1rem;">Contact Us</p>
-            <p style="font-size: 1.1rem;">
+            <p>Contact Us</p>
+            <p>
                 <a href="mailto:info@schooledge.co.za">info@schooledge.co.za</a> | 
                 <a href="tel:+27730135395">+27 730 135 395</a>
             </p>
@@ -1218,9 +1680,28 @@
     </footer>
 
     <script>
-        // FORMSPREE INTEGRATION
-        // Replace 'YOUR_FORM_ID' with your actual Formspree form ID
-        // Example: If your endpoint is https://formspree.io/f/xyzabc123, use 'xyzabc123'
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Form submission (Replace 'YOUR_FORM_ID' with your Formspree ID)
         const FORMSPREE_ID = 'YOUR_FORM_ID'; // ⬅️ UPDATE THIS!
         
         document.getElementById('contactForm').addEventListener('submit', async function(e) {
@@ -1229,7 +1710,6 @@
             const submitButton = this.querySelector('.submit-button');
             const originalText = submitButton.textContent;
             
-            // Show loading state
             submitButton.textContent = 'Sending...';
             submitButton.disabled = true;
             
@@ -1245,12 +1725,10 @@
                 });
                 
                 if (response.ok) {
-                    // Success!
                     document.getElementById('successMessage').style.display = 'block';
                     this.reset();
                     document.getElementById('successMessage').scrollIntoView({ behavior: 'smooth' });
                     
-                    // Reset button after 3 seconds
                     setTimeout(() => {
                         submitButton.textContent = originalText;
                         submitButton.disabled = false;
@@ -1263,16 +1741,6 @@
                 submitButton.textContent = originalText;
                 submitButton.disabled = false;
             }
-        });
-
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            });
         });
     </script>
 </body>
