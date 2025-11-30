@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SchoolEdge - Premium School Management System for South Africa</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #1a202c;
+            overflow-x: hidden;
+        }
+
+        /* Animated gradient background */
+        .header {
+            background: linear-gradient(-45deg, #667eea, #764ba2, #f093fb, #4facfe);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            color: white;
+            padding: 1.2rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 30px rgba(0,0,0,0.1);
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            letter-spacing: -0.5px;
+        }
+
+        .logo-icon {
+            font-size: 2.5rem;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+        }
+
+        .cta-button {
+            background: white;
+            color: #667eea;
+            padding: 0.9rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .cta-button:hover {
+            background: transparent;
+            color: white;
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .hero {
+            background: linear-gradient(-45deg, #667eea, #764ba2, #f093fb, #4facfe);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            color: white;
+            padding: 10rem 2rem 8rem;
+            text-align: center;
+            margin-top: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M 100 0 L 0 0 0 100" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            font-weight: 900;
+            letter-spacing: -2px;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        }
+
+        .hero-highlight {
+            background: linear-gradient(120deg, #fff 0%, #f0f0ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 3rem;
+            opacity: 0.95;
+            font-weight: 400;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.15);
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: white;
+            color: #667eea;
+            padding: 1.3rem 3rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 1.2rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 3px solid white;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+
+        .btn-primary:hover {
+            background: transparent;
+            color: white;
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+        }
+
+        .btn-secondary {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            color: white;
+            padding: 1.3rem 3rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.2rem;
+            border: 2px solid rgba(255,255,255,0.5);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: #667eea;
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section {
+            padding: 6rem 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            color: #1a202c;
+            font-weight: 900;
+            letter-spacing: -1.5px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.4rem;
+            color: #718096;
+            margin-bottom: 5rem;
+            font-weight: 400;
+        }
+
+        .stats {
+            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+            padding: 5rem 2rem;
+            text-align: center;
+            border-top: 4px solid #667eea;
+            border-bottom: 4px solid #667eea;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .stat-item {
+            padding: 2rem;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1.2rem;
+            color: #4a5568;
+            font-weight: 600;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin-top: 4rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 3rem;
+            border-radius: 24px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid transparent;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(102, 126, 234, 0.25);
+            border-color: #667eea;
+        }
+
+        .feature-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            filter: drop-shadow(0 4px 10px rgba(0,0,0,0.1));
+        }
+
+        .feature-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #1a202c;
+            font-weight: 800;
+        }
+
+        .feature-card p {
+            color: #718096;
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        .pricing {
+            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2.5rem;
+            margin-top: 4rem;
+            max-width: 1600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        @media (max-width: 1400px) {
+            .pricing-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .price-card {
+            background: white;
+            padding: 3rem 2.5rem;
+            border-radius: 24px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 3px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .price-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .price-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 60px rgba(102, 126, 234, 0.25);
+            border-color: #667eea;
+        }
+
+        .price-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .price-card.featured {
+            border: 3px solid #667eea;
+            transform: scale(1.05);
+            box-shadow: 0 20px 60px rgba(102, 126, 234, 0.3);
+        }
+
+        .price-card.featured::before {
+            transform: scaleX(1);
+            height: 8px;
+        }
+
+        .popular-badge {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .price-card h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #1a202c;
+            font-weight: 800;
+        }
+
+        .price {
+            font-size: 3rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+            line-height: 1;
+        }
+
+        .price-period {
+            color: #718096;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .price-features {
+            list-style: none;
+            margin-bottom: 2.5rem;
+            text-align: left;
+        }
+
+        .price-features li {
+            padding: 1rem 0;
+            border-bottom: 1px solid #e2e8f0;
+            color: #4a5568;
+            font-size: 1.05rem;
+            font-weight: 500;
+        }
+
+        .price-features li:before {
+            content: "✓ ";
+            color: #48bb78;
+            font-weight: bold;
+            margin-right: 0.8rem;
+            font-size: 1.3rem;
+        }
+
+        .price-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1.2rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 1.1rem;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .price-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
+        }
+
+        .pilot-banner {
+            background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+            color: white;
+            padding: 5rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pilot-banner::before {
+            content: '🎉';
+            position: absolute;
+            font-size: 20rem;
+            opacity: 0.1;
+            top: -50px;
+            right: -50px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .pilot-banner h2 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 900;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        }
+
+        .pilot-banner p {
+            font-size: 1.5rem;
+            margin-bottom: 2.5rem;
+            font-weight: 500;
+        }
+
+        .testimonial {
+            background: white;
+            padding: 3rem;
+            border-radius: 24px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            margin: 1rem 0;
+            transition: all 0.3s ease;
+            border-left: 6px solid #667eea;
+            display: none; /* Hidden until you have real testimonials */
+        }
+
+        .testimonial:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 50px rgba(102, 126, 234, 0.2);
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            color: #4a5568;
+            margin-bottom: 1.5rem;
+            line-height: 1.9;
+            font-size: 1.15rem;
+        }
+
+        .testimonial-author {
+            font-weight: 800;
+            color: #1a202c;
+            font-size: 1.1rem;
+        }
+
+        .form-container {
+            max-width: 700px;
+            margin: 4rem auto;
+            background: white;
+            padding: 4rem;
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.8rem;
+            font-weight: 700;
+            color: #1a202c;
+            font-size: 1.05rem;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 1rem 1.2rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 1.05rem;
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 140px;
+        }
+
+        .submit-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1.3rem 3rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 800;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .submit-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
+        }
+
+        .success-message {
+            background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-top: 1.5rem;
+            display: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .cta-section {
+            background: linear-gradient(-45deg, #667eea, #764ba2, #f093fb, #4facfe);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            color: white;
+            padding: 6rem 2rem;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 900;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        }
+
+        .cta-section p {
+            font-size: 1.4rem;
+            margin-bottom: 2.5rem;
+            font-weight: 500;
+        }
+
+        .footer {
+            background: #1a202c;
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .contact-info {
+            margin-bottom: 2rem;
+        }
+
+        .contact-info a {
+            color: #667eea;
+            text-decoration: none;
+            margin: 0 1.5rem;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .contact-info a:hover {
+            color: #764ba2;
+        }
+
+        .comparison-badge {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1rem;
+            margin-top: 1rem;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(245, 87, 108, 0.3);
+        }
+
+       @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .features-grid,
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .price-card.featured {
+                transform: scale(1);
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .cta-section h2 {
+                font-size: 2rem;
+            }
+
+            .cta-section p {
+                font-size: 1.1rem;
+            }
+
+            .btn-primary {
+                padding: 1rem 2rem;
+                font-size: 1rem;
+                white-space: nowrap;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .hero-buttons .btn-primary,
+            .hero-buttons .btn-secondary {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-icon">📚</span> SchoolEdge
+            </div>
+            <a href="#contact" class="cta-button">Get Started Free</a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <div class="container">
+                <h1>Transform Your School with <span class="hero-highlight">SchoolEdge</span></h1>
+                <p>The premium school management system that South African schools trust. Powerful. Beautiful. Affordable.</p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn-primary">Start Free 3-Month Trial</a>
+                    <a href="#features" class="btn-secondary">See How It Works</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-number">15+</div>
+                <div class="stat-label">Hours Saved Weekly</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">85%</div>
+                <div class="stat-label">Less Paperwork</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">60%</div>
+                <div class="stat-label">Cheaper Than Competitors</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">2 Weeks</div>
+                <div class="stat-label">To Full Operation</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pilot-banner">
+        <h2>🎉 Launch Special: 3 Months Completely FREE</h2>
+        <p>Test everything. Train your staff. Prove the value. Zero risk. Zero credit card required.</p>
+        <a href="#contact" class="btn-primary">Claim Your Free Pilot Program →</a>
+    </section>
+
+    <section class="section" id="features">
+        <div class="container">
+            <h2 class="section-title">Everything Your School Needs</h2>
+            <p class="section-subtitle">One comprehensive platform. No juggling multiple systems. Pure excellence.</p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">👨‍🎓</div>
+                    <h3>Student Management</h3>
+                    <p>Complete student profiles, enrollment tracking, academic records, and performance analytics all in one beautifully designed interface.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">💰</div>
+                    <h3>Financial Management</h3>
+                    <p>Track fees, process payments, manage balances, and generate financial reports.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Academic Reporting</h3>
+                    <p>Automated report card generation, grade calculations, teacher comments, and term-based performance tracking aligned with CAPS curriculum.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">📝</div>
+                    <h3>Exam & Assignment Tracking</h3>
+                    <p>Schedule exams, track assignments, record results, and analyze performance across all subjects and terms with intelligent insights.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">👨‍🏫</div>
+                    <h3>Teacher Management</h3>
+                    <p>Staff profiles, subject assignments, intelligent timetables, and class supervision coordination made effortless.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">👪</div>
+                    <h3>Premium Parent Portal</h3>
+                    <p>Secure access for parents to view their children's reports, attendance, fees, and school announcements in real-time.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">📢</div>
+                    <h3>Communication Hub</h3>
+                    <p>Send announcements school-wide, by grade, or by class. Manage events and keep everyone perfectly informed.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Security & Compliance</h3>
+                    <p>POPIA compliant, military-grade encryption, role-based access, and automated backups for complete peace of mind.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>Mobile Responsive</h3>
+                    <p>Stunning on any device - desktop, tablet, or smartphone. Access from anywhere with lightning-fast performance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section pricing" id="pricing">
+        <div class="container">
+            <h2 class="section-title">Pricing That Beats Every Competitor</h2>
+            <p class="section-subtitle">Transparent, honest pricing. Up to 60% cheaper than others. No hidden fees. Ever.</p>
+            
+            <div class="pricing-grid">
+                <div class="price-card">
+                    <h3>Starter</h3>
+                    <div class="price">R1,295</div>
+                    <div class="price-period">per month</div>
+                    <div class="comparison-badge">Save ~R2,200/mo vs competitors</div>
+                    <ul class="price-features">
+                        <li>Up to 100 students</li>
+                        <li>Unlimited admin & teacher accounts</li>
+                        <li>Parent portal included</li>
+                        <li>All core features</li>
+                        <li>Email support</li>
+                        <li>Daily backups</li>
+                        <li>POPIA compliant</li>
+                    </ul>
+                    <a href="#contact" class="price-button">Get Started</a>
+                </div>
+
+                <div class="price-card featured">
+                    <div class="popular-badge">🔥 MOST POPULAR</div>
+                    <h3>Growth</h3>
+                    <div class="price">R2,495</div>
+                    <div class="price-period">per month</div>
+                    <div class="comparison-badge">Save ~R3,000/mo vs competitors</div>
+                    <ul class="price-features">
+                        <li>101-250 students</li>
+                        <li>Unlimited admin & teacher accounts</li>
+                        <li>Parent portal included</li>
+                        <li>All core features</li>
+                        <li>Priority email support</li>
+                        <li>Daily backups</li>
+                        <li>POPIA compliant</li>
+                        <li>On-site training available</li>
+                    </ul>
+                    <a href="#contact" class="price-button">Get Started</a>
+                </div>
+
+                <div class="price-card">
+                    <h3>Professional</h3>
+                    <div class="price">R3,995</div>
+                    <div class="price-period">per month</div>
+                    <div class="comparison-badge">Save ~R3,500/mo vs competitors</div>
+                    <ul class="price-features">
+                        <li>251-500 students</li>
+                        <li>Unlimited admin & teacher accounts</li>
+                        <li>Parent portal included</li>
+                        <li>All core features</li>
+                        <li>Priority support (4hr response)</li>
+                        <li>Daily backups</li>
+                        <li>POPIA compliant</li>
+                        <li>Free on-site training</li>
+                        <li>Dedicated account manager</li>
+                    </ul>
+                    <a href="#contact" class="price-button">Get Started</a>
+                </div>
+
+                <div class="price-card">
+                    <h3>Enterprise</h3>
+                    <div class="price">R6,495</div>
+                    <div class="price-period">per month</div>
+                    <div class="comparison-badge">Save ~R6,000/mo vs competitors</div>
+                    <ul class="price-features">
+                        <li>501-1,000 students</li>
+                        <li>Unlimited admin & teacher accounts</li>
+                        <li>Parent portal included</li>
+                        <li>All core features</li>
+                        <li>24/7 priority support</li>
+                        <li>Hourly backups</li>
+                        <li>POPIA compliant</li>
+                        <li>Free on-site training (unlimited)</li>
+                        <li>Dedicated account manager</li>
+                        <li>Custom integrations available</li>
+                    </ul>
+                    <a href="#contact" class="price-button">Get Started</a>
+                </div>
+            </div>
+
+            <p style="text-align: center; margin-top: 4rem; font-size: 1.3rem; color: #1a202c; font-weight: 600;">
+                💡 <strong>Save 20%</strong> with annual billing | All plans include 3-month FREE trial
+            </p>
+        </div>
+    </section>
+
+    <section class="section" id="contact" style="background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);">
+        <div class="container">
+            <h2 class="section-title">Start Your Free 3-Month Trial</h2>
+            <p class="section-subtitle">No credit card required. Full features. Zero risk. Be operational in 2 weeks.</p>
+            
+            <div class="form-container">
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="schoolName">School Name *</label>
+                        <input type="text" id="schoolName" name="schoolName" required placeholder="e.g., St. Mary's College">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contactName">Your Name *</label>
+                        <input type="text" id="contactName" name="contactName" required placeholder="e.g., John Smith">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="position">Your Position *</label>
+                        <select id="position" name="position" required>
+                            <option value="">Select your position</option>
+                            <option value="principal">Principal/Headmaster</option>
+                            <option value="deputy">Deputy Principal</option>
+                            <option value="bursar">Bursar/Finance Manager</option>
+                            <option value="admin">Administrator</option>
+                            <option value="it">IT Manager</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required placeholder="your.email@school.co.za">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number *</label>
+                        <input type="tel" id="phone" name="phone" required placeholder="+27 12 345 6789">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="students">Number of Students *</label>
+                        <select id="students" name="students" required>
+                            <option value="">Select range</option>
+                            <option value="0-100">Up to 100 (Starter - R1,295/mo)</option>
+                            <option value="101-250">101-250 (Growth - R2,495/mo)</option>
+                            <option value="251-500">251-500 (Professional - R3,995/mo)</option>
+                            <option value="501-1000">501-1,000 (Enterprise - R6,495/mo)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="province">Province *</label>
+                        <select id="province" name="province" required>
+                            <option value="">Select province</option>
+                            <option value="gauteng">Gauteng</option>
+                            <option value="western-cape">Western Cape</option>
+                            <option value="kwazulu-natal">KwaZulu-Natal</option>
+                            <option value="eastern-cape">Eastern Cape</option>
+                            <option value="free-state">Free State</option>
+                            <option value="limpopo">Limpopo</option>
+                            <option value="mpumalanga">Mpumalanga</option>
+                            <option value="north-west">North West</option>
+                            <option value="northern-cape">Northern Cape</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="currentSystem">What system are you currently using? (optional)</label>
+                        <input type="text" id="currentSystem" name="currentSystem" placeholder="e.g. Excel, Manual">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Your biggest administrative challenge (optional)</label>
+                        <textarea id="message" name="message" placeholder="Tell us what's frustrating you most..."></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-button">Request Free Trial →</button>
+                    
+                    <div class="success-message" id="successMessage">
+                        ✓ Amazing! We'll contact you within 24 hours to set up your free 3-month trial. Get ready to transform your school!
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Transform Your School?</h2>
+            <p>Join forward-thinking schools already saving time and money with SchoolEdge</p>
+            <a href="#contact" class="btn-primary">Start Your Free Trial Today →</a>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="contact-info">
+            <p style="font-size: 1.3rem; font-weight: 700; margin-bottom: 1rem;">Contact Us</p>
+            <p style="font-size: 1.1rem;">
+                <a href="mailto:info@schooledge.co.za">info@schooledge.co.za</a> | 
+                <a href="tel:+27123456789">+27 730135395</a>
+            </p>
+        </div>
+        <p style="margin-top: 2rem; opacity: 0.8;">&copy; 2024 SchoolEdge. Built specifically for South African Schools. POPIA Compliant. Proudly South African.</p>
+    </footer>
+
+    <script>
+        // FORMSPREE INTEGRATION
+        // Replace 'YOUR_FORM_ID' with your actual Formspree form ID
+        // Example: If your endpoint is https://formspree.io/f/xyzabc123, use 'xyzabc123'
+        const FORMSPREE_ID = 'YOUR_FORM_ID'; // ⬅️ UPDATE THIS!
+        
+        document.getElementById('contactForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const submitButton = this.querySelector('.submit-button');
+            const originalText = submitButton.textContent;
+            
+            // Show loading state
+            submitButton.textContent = 'Sending...';
+            submitButton.disabled = true;
+            
+            const formData = new FormData(this);
+            
+            try {
+                const response = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+                
+                if (response.ok) {
+                    // Success!
+                    document.getElementById('successMessage').style.display = 'block';
+                    this.reset();
+                    document.getElementById('successMessage').scrollIntoView({ behavior: 'smooth' });
+                    
+                    // Reset button after 3 seconds
+                    setTimeout(() => {
+                        submitButton.textContent = originalText;
+                        submitButton.disabled = false;
+                    }, 3000);
+                } else {
+                    throw new Error('Form submission failed');
+                }
+            } catch (error) {
+                alert('Oops! There was a problem submitting your form. Please email us directly at info@schooledge.co.za');
+                submitButton.textContent = originalText;
+                submitButton.disabled = false;
+            }
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
